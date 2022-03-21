@@ -9,6 +9,7 @@ public class ShockwaveEffectController:MagicEffectControllerBase {
 	[SerializeField] bool eliminateNegativeVelocity;
 	[SerializeField] float radius;
 	[SerializeField] AnimationCurve dropoff;
+	[SerializeField] float airBorneForceModifier=0.6f;
 
 	ContactFilter2D filterEntity;
 	ContactFilter2D filterDefault;
@@ -43,7 +44,7 @@ public class ShockwaveEffectController:MagicEffectControllerBase {
 
 			if(useDirectionProcesser) offset=DirectionProcesser(offset);
 
-			float forceThisTime = force*(isOtherGrounded ? 0.6f : 1);
+			float forceThisTime = force*(isOtherGrounded ? airBorneForceModifier : 1);
 
 			float normalizedDistance = distance/radius;
 			forceThisTime*=dropoff.Evaluate(normalizedDistance);
