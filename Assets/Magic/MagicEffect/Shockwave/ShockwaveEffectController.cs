@@ -10,20 +10,22 @@ public class ShockwaveEffectController:MagicEffectControllerBase {
 	[SerializeField] float radius;
 	[SerializeField] AnimationCurve dropoff;
 
-	ContactFilter2D filter;
+	ContactFilter2D filterEntity;
+	ContactFilter2D filterDefault;
 	static readonly Angle upRight = new Angle(60);
 	static readonly Angle upLeft = new Angle(120);
 	static readonly Angle downRight = new Angle(-75);
 	static readonly Angle downLeft = new Angle(-115);
 
 	private void Start() {
-		filter=Utility.GetFilterByLayerName("Entity");
+		filterEntity=Utility.GetFilterByLayerName("Entity");
+		filterDefault=Utility.GetFilterByLayerName("Default");
+		filterDefault.useTriggers=true;
 	}
 
 	void Update() {
 
-		int cnt = Physics2D.OverlapCircleNonAlloc(transform.position,radius,Utility.colliderBuffer,filter.layerMask);
-
+		int cnt = Physics2D.OverlapCircleNonAlloc(transform.position,radius,Utility.colliderBuffer,filterEntity.layerMask);
 		for(int i = 0;i<cnt;i++) {
 			Rigidbody2D other = Utility.colliderBuffer[i].attachedRigidbody;
 			if(!other) continue;
@@ -48,6 +50,16 @@ public class ShockwaveEffectController:MagicEffectControllerBase {
 
 			if(eliminateNegativeVelocity) other.velocity=Utility.EliminateOnDirection(other.velocity,-offset);
 			other.AddForce(offset*forceThisTime,ForceMode2D.Impulse);
+
+		}
+
+		cnt = Physics2D.OverlapCircleNonAlloc(transform.position,radius,Utility.colliderBuffer,filterDefault.layerMask);
+		for(int i = 0;i<cnt;i++) {
+			Collider2D other = Utility.colliderBuffer[i];
+			PlatformBreakByExplosion platform = other.GetComponent<PlatformBreakByExplosion>();
+			if(!platform) break;
+
+			platform.OnBreak();
 
 		}
 
