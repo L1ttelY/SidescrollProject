@@ -38,7 +38,7 @@ public class PlatformBreaker:MonoBehaviour {
 	SpriteRenderer spriteRenderer;
 
 	float timeAfterBreak;
-	bool broken;
+	public bool broken{ get; private set; }
 	public void Break() {
 		if(broken) return;
 

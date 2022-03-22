@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8879720453661976495}
   - component: {fileID: 8879720453661976494}
   - component: {fileID: -4332755778608492285}
+  - component: {fileID: 712426309623326121}
   m_Layer: 4
   m_Name: LiquidEffect
   m_TagString: Untagged
@@ -97,7 +98,7 @@ BuoyancyEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_SurfaceLevel: 1
+  m_SurfaceLevel: 2
   m_Density: 1.2
   m_LinearDrag: 10
   m_AngularDrag: 10
@@ -133,3 +134,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 8
+--- !u!114 &712426309623326121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8879720453661976466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a586368cb022c345943a38a0557692b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMolten: 4
+  layerFrozen: 6
+  spriteMolten: {fileID: 21300000, guid: 6e702a87ee51d074c83aa04fc2fd23fa, type: 3}
+  spriteFrozen: {fileID: 21300000, guid: 4020acf76da6a17419303bce8f6f6ca7, type: 3}

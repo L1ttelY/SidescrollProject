@@ -6,8 +6,11 @@ public class MagicBoltShockwave:MagicBoltBase {
 
 	[SerializeField] GameObject shockwavePrefab;
 
-	protected override void OnImpact(Vector2 normal) {
+	bool exploded;
 
+	protected override void OnImpact(Vector2 normal) {
+		if(exploded) return;
+		exploded=true;
 		Instantiate(shockwavePrefab,transform.position,Quaternion.identity);
 		base.OnImpact(normal);
 	}

@@ -5,10 +5,10 @@ using UnityEngine.Events;
 
 public class PlatformBreakByExplosion:MonoBehaviour {
 
-	[SerializeField] UnityEvent onBreak;
+	[SerializeField] PlatformBreaker platform;
 
 	public void OnBreak() {
-		onBreak.Invoke();
+		platform.Break();
 	}
 
 }

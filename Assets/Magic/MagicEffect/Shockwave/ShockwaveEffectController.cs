@@ -9,7 +9,8 @@ public class ShockwaveEffectController:MagicEffectControllerBase {
 	[SerializeField] bool eliminateNegativeVelocity;
 	[SerializeField] float radius;
 	[SerializeField] AnimationCurve dropoff;
-	[SerializeField] float airBorneForceModifier=0.6f;
+	[SerializeField] float airBorneForceModifier = 0.6f;
+	[SerializeField] float timeTotal=0.15f;
 
 	ContactFilter2D filterEntity;
 	ContactFilter2D filterDefault;
@@ -25,6 +26,17 @@ public class ShockwaveEffectController:MagicEffectControllerBase {
 	}
 
 	void Update() {
+
+		if(!exploded) Explode();
+
+		time+=Time.deltaTime;
+		if(time>timeTotal) Destroy(gameObject);
+
+	}
+
+	void Explode() {
+
+		exploded=true;
 
 		int cnt = Physics2D.OverlapCircleNonAlloc(transform.position,radius,Utility.colliderBuffer,filterEntity.layerMask);
 		for(int i = 0;i<cnt;i++) {
@@ -54,7 +66,7 @@ public class ShockwaveEffectController:MagicEffectControllerBase {
 
 		}
 
-		cnt = Physics2D.OverlapCircleNonAlloc(transform.position,radius,Utility.colliderBuffer,filterDefault.layerMask);
+		cnt=Physics2D.OverlapCircleNonAlloc(transform.position,radius,Utility.colliderBuffer,filterDefault.layerMask);
 		for(int i = 0;i<cnt;i++) {
 			Collider2D other = Utility.colliderBuffer[i];
 			PlatformBreakByExplosion platform = other.GetComponent<PlatformBreakByExplosion>();
@@ -63,10 +75,10 @@ public class ShockwaveEffectController:MagicEffectControllerBase {
 			platform.OnBreak();
 
 		}
-
-		Destroy(gameObject);
-
 	}
+
+	bool exploded;
+	float time;
 
 	Vector2 DirectionProcesser(Vector2 direction) {
 		if(((Angle)direction).IfBetween(upRight,upLeft)) {

@@ -6,16 +6,16 @@ using UnityEngine.Events;
 public class PlatformBreakOnStand:MonoBehaviour {
 
 	[SerializeField] float timeToBreak;
-	[SerializeField] UnityEvent onBreak;
+	[SerializeField] PlatformBreaker platform;
 
-	float timeSteppedOn=-1;
+	float timeSteppedOn = -1;
 
 	private void FixedUpdate() {
-		
-		if(timeSteppedOn!=-1){
-			if(timeSteppedOn<Time.time-timeToBreak){
+
+		if(timeSteppedOn!=-1) {
+			if(timeSteppedOn<Time.time-timeToBreak) {
 				timeSteppedOn=-1;
-				onBreak.Invoke();
+				platform.Break();
 			}
 		}
 
@@ -23,6 +23,7 @@ public class PlatformBreakOnStand:MonoBehaviour {
 
 	private void OnTriggerStay2D(Collider2D collision) {
 		if(!collision.attachedRigidbody) return;
+		if(platform.broken) return;
 		if(timeSteppedOn==-1) timeSteppedOn=Time.time;
 	}
 
