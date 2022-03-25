@@ -20,7 +20,8 @@ public class ShockwaveEffectController:MagicEffectControllerBase {
 	static readonly Angle downLeft = new Angle(-115);
 
 	private void Start() {
-		filterEntity=Utility.GetFilterByLayerName("Entity");
+		string[] filterEntityNames = { "Entity" ,"Solid"};
+		filterEntity=Utility.GetFilterByLayerName(filterEntityNames);
 		filterDefault=Utility.GetFilterByLayerName("Default");
 		filterDefault.useTriggers=true;
 	}
@@ -46,7 +47,7 @@ public class ShockwaveEffectController:MagicEffectControllerBase {
 
 			bool isOtherGrounded = true;
 			ObjectGroundedTester otherGrounded = other.GetComponent<ObjectGroundedTester>();
-			if(other) isOtherGrounded=otherGrounded.grounded;
+			if(otherGrounded) isOtherGrounded=otherGrounded.grounded;
 
 			Vector2 otherPosition = other.position;
 			Vector2 otherClosestPosition = other.GetComponent<Collider2D>().ClosestPoint(transform.position);

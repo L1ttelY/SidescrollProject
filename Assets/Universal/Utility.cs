@@ -7,11 +7,15 @@ public class Utility {
 	public static Collider2D[] colliderBuffer = new Collider2D[100];
 
 	public static ContactFilter2D GetFilterByLayerName(string name){
-		ContactFilter2D filter=new ContactFilter2D();
-		filter.useLayerMask=true;
 		string[] layerMask = new string[1];
 		layerMask[0]=name;
-		filter.layerMask=LayerMask.GetMask(layerMask);
+		return GetFilterByLayerName(layerMask);
+	}
+
+	public static ContactFilter2D GetFilterByLayerName(string[] name) {
+		ContactFilter2D filter = new ContactFilter2D();
+		filter.useLayerMask=true;
+		filter.layerMask=LayerMask.GetMask(name);
 		return filter;
 	}
 
