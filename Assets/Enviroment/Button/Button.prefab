@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 118677047966514648}
   - component: {fileID: 118677047966514646}
   - component: {fileID: 118677047966514647}
+  - component: {fileID: 555567605}
   m_Layer: 6
   m_Name: Button Pressable
   m_TagString: Untagged
@@ -304,3 +305,20 @@ PolygonCollider2D:
       - {x: 0.55, y: -0.55}
       - {x: 0.46237025, y: 0.37011534}
       - {x: 0.4433209, y: 0.46410918}
+--- !u!114 &555567605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118677047966514644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa1ea0f7cef6ea84c836070d84de25d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SetState:
+    m_PersistentCalls:
+      m_Calls: []
+  threshold: 0.5
+  on: 0
