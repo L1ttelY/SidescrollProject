@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 1498198000690447266}
   - component: {fileID: 1498198000690447268}
   - component: {fileID: 1498198000690447271}
+  - component: {fileID: 3215592599911888455}
   m_Layer: 6
-  m_Name: BreakablePlatform
+  m_Name: BreakablePlatformDeflect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+  m_Color: {r: 0.3001513, g: 0.5888359, b: 0.6698113, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -126,6 +127,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3215592599911888455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498198000690447267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3481ac40cd592e840898a4e8965e5912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platform: {fileID: 1498198000690447268}
 --- !u!1 &1498198000886259439
 GameObject:
   m_ObjectHideFlags: 0
