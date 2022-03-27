@@ -14,13 +14,12 @@ GameObject:
   - component: {fileID: 5873507952248790390}
   - component: {fileID: 5873507952248790395}
   - component: {fileID: 5873507952248790394}
-  - component: {fileID: 5873507952248790396}
   - component: {fileID: 5873507952248790400}
   - component: {fileID: 3448758347594558813}
   - component: {fileID: 3448758347594558815}
   - component: {fileID: 3448758347594558814}
   - component: {fileID: 1055064007}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Player1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,24 +167,6 @@ MonoBehaviour:
   accelerationAir: 30
   speed: 5
   moveDirection: 0
---- !u!255 &5873507952248790396
-FixedJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5873507952248790403}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 41.10332, y: 9.224983}
-  m_DampingRatio: 0
-  m_Frequency: 0
 --- !u!114 &5873507952248790400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,9 +240,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   accelerateAfterDeflect: 0
+  recordVelocity: 1
   dashTime: 0.5
   dashSpeed: 15
-  dashEndSpeedMultiplier: 0.3
+  dashEndSpeedMultiplier: 0.6
   dashSize: 0.3
   layerNormal: 7
   layerDashing: 8

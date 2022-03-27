@@ -7,6 +7,7 @@ public class RespawnPositionAreaActivator:MonoBehaviour {
 
 	[SerializeField] UnityEvent activationEvent;
 	private void OnTriggerEnter2D(Collider2D collision) {
+		if(!collision.GetComponent<PlayerDamagable>()) return;
 		activationEvent.Invoke();
 	}
 

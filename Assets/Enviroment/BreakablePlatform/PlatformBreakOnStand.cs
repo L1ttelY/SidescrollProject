@@ -24,7 +24,6 @@ public class PlatformBreakOnStand:MonoBehaviour {
 	private void OnTriggerStay2D(Collider2D collision) {
 		if(!collision.attachedRigidbody) return;
 		if(platform.broken) return;
-		if(collision.gameObject.layer!=8) return;
 		if(timeSteppedOn==-1) timeSteppedOn=Time.time;
 	}
 

@@ -5,6 +5,8 @@ using UnityEngine;
 public class DashActionHandler:ActionHandlerBase {
 
 	[SerializeField] bool accelerateAfterDeflect;
+	[SerializeField] bool recordVelocity;
+	Vector2 velocityAfterDash;
 
 	[SerializeField] float dashTime;
 	[SerializeField] float dashSpeed;
@@ -48,6 +50,7 @@ public class DashActionHandler:ActionHandlerBase {
 			if(canDash&&doDash) {
 
 				//¿ªÊ¼³å´Ì
+				velocityAfterDash=rigidbody.velocity;
 				timeDashed=0;
 				rigidbody.gravityScale=0;
 				dashVelocity=targetDirection.normalized*dashSpeed;
@@ -89,6 +92,7 @@ public class DashActionHandler:ActionHandlerBase {
 		dashing=false;
 		transform.localScale=Vector3.one;
 		gameObject.layer=layerNormal;
+		if(recordVelocity) rigidbody.velocity=velocityAfterDash;
 		//fly.PartialResetFlyTime();
 	}
 
