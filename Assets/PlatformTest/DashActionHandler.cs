@@ -89,7 +89,7 @@ public class DashActionHandler:ActionHandlerBase {
 				other?.OnUse();
 				dashVelocity=Vector2.Reflect(dashVelocity,collision.GetContact(0).normal);
 				fly.PartialResetFlyTime();
-				timeDashed=Mathf.Max(0,timeDashed-0.5f);
+				timeDashed=dashTime*0.5f;
 				deflect--;
 
 			}
