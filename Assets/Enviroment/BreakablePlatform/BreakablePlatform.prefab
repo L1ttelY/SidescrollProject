@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1498198000690447266}
   - component: {fileID: 1498198000690447268}
   - component: {fileID: 1498198000690447271}
+  - component: {fileID: 306143338}
   m_Layer: 6
   m_Name: BreakablePlatform
   m_TagString: Untagged
@@ -126,6 +127,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &306143338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498198000690447267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3481ac40cd592e840898a4e8965e5912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platform: {fileID: 1498198000690447268}
+  <doDeflect>k__BackingField: 0
 --- !u!1 &1498198000886259439
 GameObject:
   m_ObjectHideFlags: 0

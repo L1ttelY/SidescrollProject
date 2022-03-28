@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 885880863561706315}
   - component: {fileID: 885880863561706312}
   - component: {fileID: 885880863561706316}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: DashDeflect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,3 +144,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3481ac40cd592e840898a4e8965e5912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platform: {fileID: 0}
+  <doDeflect>k__BackingField: 1

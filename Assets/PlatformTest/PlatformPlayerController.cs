@@ -33,7 +33,7 @@ public class PlatformPlayerController:MonoBehaviour {
 		if(Input.GetKey(KeyCode.A)) direction.x--;
 		if(Input.GetKey(KeyCode.D)) direction.x++;
 		if(Input.GetKey(KeyCode.S)) direction.y--;
-		if(Input.GetKey(KeyCode.Space)||Input.GetKey(KeyCode.W)) direction.y++;
+		if(Input.GetKey(KeyCode.W)) direction.y++;
 		dash.targetDirection=direction;
 		dash.doDash=direction!=Vector2.zero&&(Input.GetKey(KeyCode.LeftControl)||Input.GetKey(KeyCode.K));
 

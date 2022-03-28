@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platform: {fileID: 1498198000690447268}
+  <doDeflect>k__BackingField: 1
 --- !u!1 &1498198000886259439
 GameObject:
   m_ObjectHideFlags: 0

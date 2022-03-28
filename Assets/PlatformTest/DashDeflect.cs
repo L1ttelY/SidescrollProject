@@ -8,5 +8,6 @@ public class DashDeflect:MonoBehaviour {
 	}
 
 	[SerializeField] PlatformBreaker platform;
+	public bool doDeflect = true;
 
 }
