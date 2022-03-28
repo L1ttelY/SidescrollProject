@@ -240,10 +240,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   accelerateAfterDeflect: 0
-  recordVelocity: 1
-  dashTime: 0.5
-  dashSpeed: 15
-  dashEndSpeedMultiplier: 0.6
+  recordSpeed: 1
+  dashTime: 0.2
+  dashSpeed: 20
+  dashEndSpeed: 6
   dashSize: 0.3
   layerNormal: 7
   layerDashing: 8

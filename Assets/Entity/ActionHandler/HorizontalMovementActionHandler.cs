@@ -10,11 +10,19 @@ public class HorizontalMovementActionHandler:ActionHandlerBase {
 
 	[HideInInspector] public int moveDirection;
 
+	DashActionHandler dash;
+	protected override void GetComponentReferences() {
+		base.GetComponentReferences();
+		dash=GetComponent<DashActionHandler>();
+	}
+
 	private void FixedUpdate() {
 		UpdateHorizontalMovement();
 	}
 
 	void UpdateHorizontalMovement() {
+
+
 		Vector2 velocity = rigidbody.velocity;
 		float acceleration = groundedTester.grounded ? accelerationGround : accelerationAir;
 		acceleration*=Time.deltaTime;
