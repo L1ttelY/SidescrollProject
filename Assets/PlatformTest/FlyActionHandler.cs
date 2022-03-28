@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FlyActionHandler:ActionHandlerBase {
 
+	[SerializeField] bool tapFlyBuff = true;
 	[SerializeField] float acceleration = 8;
 	[SerializeField] float fallSpeed = 2;
 	[SerializeField] float flySpeed = 5;
@@ -55,7 +56,7 @@ public class FlyActionHandler:ActionHandlerBase {
 
 				float maxYSpeed = Mathf.Max(velocity.y,flySpeed);
 
-				if(startFly){
+				if(startFly&&tapFlyBuff){
 					velocity.y+=acceleration*0.2f;
 					consumeFly+=0.1f;
 				}else{
