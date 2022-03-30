@@ -71,6 +71,11 @@ public class DashActionHandler:ActionHandlerBase {
 	private void OnCollisionEnter2D(Collision2D collision) {
 		if(!dashing) return;
 		if(deflect==0) return;
+
+		string str = "";
+		foreach(var i in collision.contacts) str+=i.normal;
+		Debug.Log(str);
+
 		DashDeflect other = collision.gameObject.GetComponent<DashDeflect>();
 
 		if(other&&other.doDeflect) {
@@ -106,7 +111,6 @@ public class DashActionHandler:ActionHandlerBase {
 		gameObject.layer=layerNormal;
 		//fly.PartialResetFlyTime();
 	}
-
 
 	public void GainDash() {
 		canDash=true;

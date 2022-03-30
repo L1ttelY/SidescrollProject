@@ -12,7 +12,6 @@ public class FlyActionHandler:ActionHandlerBase {
 	float flyTimeTotal;
 
 	[HideInInspector] public bool doFly;
-	bool doFlyPrevious;
 
 	public void ResetFlyTime() {
 		flyTime=flyTimeTotal;
@@ -28,6 +27,8 @@ public class FlyActionHandler:ActionHandlerBase {
 		flyTimeTotal=flyTime;
 	}
 
+	bool deadFly;
+	int tickFlied;
 	private void FixedUpdate() {
 		if(groundedTester.timeNotGrounded<0.2f) ResetFlyTime();
 		if(dash.dashing) doFly=false;
@@ -35,8 +36,12 @@ public class FlyActionHandler:ActionHandlerBase {
 		float deltaSpeed = acceleration*Time.deltaTime;
 		Vector2 velocity = rigidbody.velocity;
 
-		bool startFly = !doFlyPrevious&&doFly;
-		doFlyPrevious=false;
+		bool startFly = tickFlied<3&&doFly;
+		tickFlied=doFly ? tickFlied+1 : 0;
+
+		if(!startFly&&groundedTester.grounded) deadFly=true;
+		if(startFly) deadFly=false;
+		if(deadFly) doFly=false;
 
 
 		if(flyTime<=0) {
@@ -51,15 +56,14 @@ public class FlyActionHandler:ActionHandlerBase {
 
 			//·ÉÐÐ
 			if(doFly) {
-				doFlyPrevious=true;
 				float consumeFly = 0;
 
 				float maxYSpeed = Mathf.Max(velocity.y,flySpeed);
 
-				if(startFly&&tapFlyBuff){
+				if(startFly&&tapFlyBuff) {
 					velocity.y+=acceleration*0.2f;
 					consumeFly+=0.1f;
-				}else{
+				} else {
 					velocity.y+=deltaSpeed;
 					consumeFly+=Time.deltaTime;
 				}
