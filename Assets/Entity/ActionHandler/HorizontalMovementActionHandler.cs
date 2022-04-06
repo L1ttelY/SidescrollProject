@@ -24,7 +24,15 @@ public class HorizontalMovementActionHandler:ActionHandlerBase {
 
 		if(dash.dashing) return;
 
+		float platformSpeed = 0;
+		for(int i = 0;i<groundedTester.standingOnSize;i++){
+			SlideBlockController slide = groundedTester.standingOn[i].GetComponent<SlideBlockController>();
+			if(!slide) continue;
+			platformSpeed=slide.velocity.x;
+		} 
+
 		Vector2 velocity = rigidbody.velocity;
+		velocity.x-=platformSpeed;
 		float acceleration = groundedTester.grounded ? accelerationGround : accelerationAir;
 		acceleration*=Time.deltaTime;
 		float targetSpeed = moveDirection*speed;
@@ -49,6 +57,7 @@ public class HorizontalMovementActionHandler:ActionHandlerBase {
 
 		}
 
+		velocity.x+=platformSpeed;
 		rigidbody.velocity=velocity;
 
 	}

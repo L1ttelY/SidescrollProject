@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 4
+  m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: aac9b86529ad04040947598abb656b8f, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 0
@@ -149,7 +149,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.98, y: 0.98}
   m_EdgeRadius: 0
 --- !u!114 &5873507952248790394
 MonoBehaviour:
@@ -163,9 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d8117e9cda39544b821518f018b11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelerationGround: 40
-  accelerationAir: 30
-  speed: 5
+  accelerationGround: 20
+  accelerationAir: 10
+  speed: 6
   moveDirection: 0
 --- !u!114 &5873507952248790400
 MonoBehaviour:
@@ -242,8 +242,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accelerateAfterDeflect: 0
   recordSpeed: 1
-  dashTime: 0.3
-  dashSpeed: 20
+  dashTime: 0.5
+  dashSpeed: 15
   dashEndSpeed: 6
   dashSize: 0.3
   layerNormal: 7

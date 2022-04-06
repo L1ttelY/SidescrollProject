@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[AddComponentMenu("ª˙πÿ/ ‰»Î/SensorController")]
 public class SensorController:MonoBehaviour {
 
 	[SerializeField] UnityEvent<bool> SetState;

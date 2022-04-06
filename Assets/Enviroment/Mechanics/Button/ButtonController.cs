@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[AddComponentMenu("ª˙πÿ/ ‰»Î/ButtonController")]
 public class ButtonController:MonoBehaviour {
 
 	[SerializeField] UnityEvent<bool> SetState;

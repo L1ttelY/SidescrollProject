@@ -8,6 +8,7 @@ public class ObjectGroundedTester:MonoBehaviour {
 
 	new Collider2D collider;
 	private void Start() {
+		standingOn=new GameObject[10];
 		collider=GetComponent<Collider2D>();
 		filterGround=Utility.GetFilterByLayerName("Solid");
 		filterWater=Utility.GetFilterByLayerName("Water");
@@ -31,11 +32,16 @@ public class ObjectGroundedTester:MonoBehaviour {
 		Vector2 size = new Vector2(bound.size.x-0.0001f,0.01f);
 		Vector2 position = new Vector2(bound.center.x,bound.min.y);
 		int cnt = Physics2D.BoxCast(position,size,0,Vector2.down,filterGround,Utility.raycastBuffer,0.01f);
+		standingOnSize=0;
 
 		grounded=false;
 		for(int i = 0;i<cnt;i++) {
 			ref RaycastHit2D hit = ref Utility.raycastBuffer[i];
-			if(hit.normal.y!=0) grounded=true;
+			if(hit.normal.y!=0) {
+				grounded=true;
+				standingOn[standingOnSize]=hit.collider.gameObject;
+				standingOnSize++;
+			}
 		}
 
 		if(grounded) timeNotGrounded=0;
@@ -89,6 +95,8 @@ public class ObjectGroundedTester:MonoBehaviour {
 	public bool submerged { get; private set; }
 	[field: SerializeField]
 	public bool floating { get; private set; }
-
+	[field: SerializeField]
+	public GameObject[] standingOn { get; private set; }
+	public int standingOnSize;
 
 }

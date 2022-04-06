@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DashActionHandler:ActionHandlerBase {
 
+	Vector3 originalScale;
+
 	[SerializeField] bool accelerateAfterDeflect;
 	[SerializeField] bool recordSpeed;
 	float speedAfterDash;
@@ -31,6 +33,7 @@ public class DashActionHandler:ActionHandlerBase {
 	float initialGravity;
 	protected override void Start() {
 		base.Start();
+		originalScale=transform.localScale;
 		fly=GetComponent<FlyActionHandler>();
 		initialGravity=rigidbody.gravityScale;
 	}
@@ -89,7 +92,12 @@ public class DashActionHandler:ActionHandlerBase {
 			deflect--;
 
 		} else {
-			if(!collision.collider.usedByEffector) {
+
+			bool doesDeflect=false;
+			if(!collision.collider.usedByEffector) doesDeflect=true;
+			if(collision.GetContact(0).normal.y>0) doesDeflect=true;
+		
+			if(doesDeflect) {
 
 				other?.OnUse();
 				dashVelocity=Vector2.Reflect(dashVelocity,collision.GetContact(0).normal);
@@ -107,7 +115,7 @@ public class DashActionHandler:ActionHandlerBase {
 		rigidbody.gravityScale=initialGravity;
 		rigidbody.velocity=dashVelocity.normalized*(recordSpeed? speedAfterDash:dashEndSpeed);
 		dashing=false;
-		transform.localScale=Vector3.one;
+		transform.localScale=originalScale;
 		gameObject.layer=layerNormal;
 		//fly.PartialResetFlyTime();
 	}
