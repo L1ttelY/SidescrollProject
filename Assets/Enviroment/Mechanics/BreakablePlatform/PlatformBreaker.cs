@@ -9,16 +9,23 @@ public class PlatformBreaker:MonoBehaviour {
 	Sprite spriteNormal;
 	[SerializeField] Sprite spriteBroken;
 
+	Noise2D noise = new Noise2D(10);
+	public float breakProgression;
+	[SerializeField] AnimationCurve breakMagnitudeCurve;
+	[SerializeField] float baseBreakMagnitude = 0.1f;
+
 	int layerNormal;
 
 	private void Start() {
 		collider=GetComponent<Collider2D>();
-		spriteRenderer=GetComponent<SpriteRenderer>();
+		spriteRenderer=GetComponentInChildren<SpriteRenderer>();
 		layerNormal=gameObject.layer;
 		spriteNormal=spriteRenderer.sprite;
+		if(spriteBroken==null) spriteBroken=spriteNormal;
 	}
 
 	private void Update() {
+		UpdateVisual();
 		if(broken) {
 			timeAfterBreak+=Time.deltaTime;
 
@@ -27,18 +34,31 @@ public class PlatformBreaker:MonoBehaviour {
 				broken=false;
 				gameObject.layer=layerNormal;
 				collider.isTrigger=false;
-				spriteRenderer.sprite=spriteNormal;
 
 			}
 
 		}
 	}
 
+	void UpdateVisual() {
+		Vector3 visualPosition = Vector2.zero;
+		if(broken) {
+			visualPosition=Vector3.zero;
+			spriteRenderer.sprite=spriteBroken;
+		} else {
+			spriteRenderer.sprite=spriteNormal;
+			float breakMagnitude = breakMagnitudeCurve.Evaluate(breakProgression);
+			if(breakProgression<0) breakMagnitude=0;
+			visualPosition=noise.Sample(breakMagnitude*baseBreakMagnitude);
+		}
+		spriteRenderer.transform.position=transform.position+visualPosition;
+	}
+
 	new Collider2D collider;
 	SpriteRenderer spriteRenderer;
 
 	float timeAfterBreak;
-	public bool broken{ get; private set; }
+	public bool broken { get; private set; }
 	public void Break() {
 		if(broken) return;
 

@@ -10,6 +10,11 @@ public class PlatformBreakOnStand:MonoBehaviour {
 
 	float timeSteppedOn = -1;
 
+	private void Update() {
+		if(timeSteppedOn==-1) platform.breakProgression=-1;
+		else platform.breakProgression=(Time.time-timeSteppedOn)/timeToBreak;
+	}
+
 	private void FixedUpdate() {
 
 		if(timeSteppedOn!=-1) {

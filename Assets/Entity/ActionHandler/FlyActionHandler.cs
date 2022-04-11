@@ -13,6 +13,8 @@ public class FlyActionHandler:ActionHandlerBase {
 
 	[HideInInspector] public bool doFly;
 
+	public bool flying { get; private set; }
+
 	public void ResetFlyTime() {
 		flyTime=flyTimeTotal;
 	}
@@ -43,6 +45,7 @@ public class FlyActionHandler:ActionHandlerBase {
 		if(startFly) deadFly=false;
 		if(deadFly) doFly=false;
 
+		flying=false;
 
 		if(flyTime<=0) {
 
@@ -56,6 +59,7 @@ public class FlyActionHandler:ActionHandlerBase {
 
 			//·ÉÐÐ
 			if(doFly) {
+				flying=true;
 				float consumeFly = 0;
 
 				float maxYSpeed = Mathf.Max(velocity.y,flySpeed);
