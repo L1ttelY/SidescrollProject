@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 struct RenderPoint {
-	static GameObject debugPrefab;
-	static RenderPoint() {
-		debugPrefab=Resources.Load<GameObject>("Debug");
-	}
-
 	public Vector2 point;
 	public float timer;
 	public float time;
@@ -26,7 +21,9 @@ struct RenderPoint {
 		timer=0;
 		time=_time;
 		active=true;
-		debug=Object.Instantiate(debugPrefab,point,Quaternion.identity);
+		debug=GameObject.CreatePrimitive(PrimitiveType.Sphere);
+		debug.transform.position=point;
+		debug.transform.localScale=Vector3.one*0.1f;
 	}
 }
 
@@ -52,7 +49,6 @@ public class CameraController:MonoBehaviour {
 	}
 
 	//事件
-
 	public class CameraPoiList:List<KeyValuePair<Vector2,float>> { }
 	public static event System.EventHandler<CameraPoiList> GetCameraPoi;
 	void OnGetPoi(CameraPoiList pois) => GetCameraPoi?.Invoke(this,pois);
@@ -98,7 +94,11 @@ public class CameraController:MonoBehaviour {
 			totalWeight+=i.Value;
 			targetPosition+=(i.Key*i.Value);
 		}
+
 		targetPosition/=totalWeight;
+
+		foreach(CameraBoundController i in CameraBoundController.instances)
+			BoundTargetPosition(i,ref targetPosition);
 
 		float speed = (targetPosition-selfPosition).magnitude*5;
 		selfPosition=Vector3.MoveTowards(selfPosition,targetPosition,speed*Time.deltaTime);
@@ -107,6 +107,14 @@ public class CameraController:MonoBehaviour {
 		//UpdateLookOffset();
 		UpdateCameraOffset();
 		UpdateScreenshake();
+	}
+
+	void BoundTargetPosition(CameraBoundController bound,ref Vector2 targetPosition) {
+		if(bound.outerBound.bounds.Contains(targetPosition)){
+			Debug.Log("!!");
+			targetPosition=bound.innerBound.ClosestPoint(targetPosition);
+			DrawPoint(targetPosition,0.01f);
+		}
 	}
 
 	//由其它物体施加的offset

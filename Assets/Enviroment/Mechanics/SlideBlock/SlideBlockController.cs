@@ -10,7 +10,7 @@ public class SlideBlockController:MonoBehaviour {
 	[SerializeField] float transistionTime;
 
 	float time;
-	public Vector2 velocity{ get; private set; }
+	public Vector2 velocity { get; private set; }
 
 	bool state = false;
 	public void SetState(bool state) {
@@ -19,6 +19,7 @@ public class SlideBlockController:MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
+		if(transistionTime==0) transistionTime=0.1f;
 		if(state) time+=Time.deltaTime;
 		else time-=Time.deltaTime;
 		if(time<0) time=0;
