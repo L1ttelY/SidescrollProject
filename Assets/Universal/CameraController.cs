@@ -113,7 +113,6 @@ public class CameraController:MonoBehaviour {
 		if(bound.outerBound.bounds.Contains(targetPosition)){
 			Debug.Log("!!");
 			targetPosition=bound.innerBound.ClosestPoint(targetPosition);
-			DrawPoint(targetPosition,0.01f);
 		}
 	}
 

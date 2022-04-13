@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outerBound: {fileID: 4280568900575868079}
-  cameraSizeCoefficiency: 1.666667
+  cameraSizeCoefficiency: 1
 --- !u!61 &4280568900894569097
 BoxCollider2D:
   m_ObjectHideFlags: 0

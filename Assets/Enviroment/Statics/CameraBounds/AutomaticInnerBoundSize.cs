@@ -15,9 +15,10 @@ public class AutomaticInnerBoundSize : MonoBehaviour{
 	}
 
 	private void Update() {
+	
 		Vector2 cameraSize = Vector2.zero;
-		cameraSize.x=camera.orthographicSize;
-		cameraSize.y=cameraSize.x/camera.aspect;
+		cameraSize.y=camera.orthographicSize;
+		cameraSize.x=cameraSize.y*camera.aspect;
 		cameraSize*=2*cameraSizeCoefficiency;
 
 		bound.size=outerBound.size-cameraSize;
