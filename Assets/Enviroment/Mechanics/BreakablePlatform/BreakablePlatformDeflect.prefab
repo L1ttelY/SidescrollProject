@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1498198000690447268}
   - component: {fileID: 1498198000690447271}
   - component: {fileID: 3215592599911888455}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: BreakablePlatformDeflect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 34.1413, y: 9.7054, z: 0}
   m_LocalScale: {x: 10.5027, y: 0.3891, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1498198000886259438}
   m_Father: {fileID: 0}
@@ -46,6 +47,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -99,8 +101,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakTime: 2
+  timeFading: 0.4
   layerBroken: 3
   spriteBroken: {fileID: 21300000, guid: 6e702a87ee51d074c83aa04fc2fd23fa, type: 3}
+  breakProgression: 0
+  breakMagnitudeCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  baseBreakMagnitude: 0.1
+  soundBreaking: {fileID: 0}
+  soundBroke: {fileID: 0}
 --- !u!61 &1498198000690447271
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -140,7 +153,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platform: {fileID: 1498198000690447268}
-  <doDeflect>k__BackingField: 1
+  doDeflect: 1
+  onDeflect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1498198000886259439
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +169,7 @@ GameObject:
   - component: {fileID: 1498198000886259345}
   - component: {fileID: 1498198000886259344}
   - component: {fileID: 6317135386467852096}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: StandAndExplosionDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,6 +186,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1498198000690447269}
   m_RootOrder: 0

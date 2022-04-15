@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlatformBreaker:MonoBehaviour {
 
 	[SerializeField] float breakTime;
+	[SerializeField] float timeFading;
 	[SerializeField] int layerBroken;
 	Sprite spriteNormal;
 	[SerializeField] Sprite spriteBroken;
@@ -51,12 +52,18 @@ public class PlatformBreaker:MonoBehaviour {
 
 	}
 
+	float timeBroken;
 	void UpdateVisual() {
 		Vector3 visualPosition = Vector2.zero;
 		if(broken) {
+			timeBroken+=Time.deltaTime;
+			if(timeBroken<timeFading) spriteRenderer.color=new Color(1,1,1,1-timeBroken/timeFading);
+			else spriteRenderer.color=Color.clear;
 			visualPosition=Vector3.zero;
 			spriteRenderer.sprite=spriteBroken;
 		} else {
+			spriteRenderer.color=Color.white;
+			timeBroken=0;
 			spriteRenderer.sprite=spriteNormal;
 			float breakMagnitude = breakMagnitudeCurve.Evaluate(breakProgression);
 			if(breakProgression<0) breakMagnitude=0;

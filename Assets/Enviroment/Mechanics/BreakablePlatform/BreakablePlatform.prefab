@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakTime: 2
+  timeFading: 0.4
   layerBroken: 3
   spriteBroken: {fileID: 0}
   breakProgression: 0

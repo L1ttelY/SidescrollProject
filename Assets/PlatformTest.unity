@@ -134,10 +134,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BreakablePlatformDeflect
       objectReference: {fileID: 0}
-    - target: {fileID: 1498198000690447267, guid: 998e1622586f4f64ab89bdc0193bee8a, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 1498198000690447269, guid: 998e1622586f4f64ab89bdc0193bee8a, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -181,10 +177,6 @@ PrefabInstance:
     - target: {fileID: 1498198000690447269, guid: 998e1622586f4f64ab89bdc0193bee8a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1498198000886259439, guid: 998e1622586f4f64ab89bdc0193bee8a, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 998e1622586f4f64ab89bdc0193bee8a, type: 3}
