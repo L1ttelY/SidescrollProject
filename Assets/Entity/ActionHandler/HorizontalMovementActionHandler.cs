@@ -10,6 +10,8 @@ public class HorizontalMovementActionHandler:ActionHandlerBase {
 
 	[HideInInspector] public int moveDirection;
 
+	public float relativeSpeed{ get; private set; }
+
 	DashActionHandler dash;
 	protected override void GetComponentReferences() {
 		base.GetComponentReferences();
@@ -57,6 +59,7 @@ public class HorizontalMovementActionHandler:ActionHandlerBase {
 
 		}
 
+		relativeSpeed=velocity.x;
 		velocity.x+=platformSpeed;
 		rigidbody.velocity=velocity;
 

@@ -40,6 +40,8 @@ public class DashActionHandler:ActionHandlerBase {
 
 	private void FixedUpdate() {
 
+		if(bounceToken>0) bounceToken--;
+
 		if(groundedTester.grounded&&!dashing) canDash=true;
 
 		if(dashing) {
@@ -80,6 +82,7 @@ public class DashActionHandler:ActionHandlerBase {
 		Debug.Log(str);
 
 		DashDeflect other = collision.gameObject.GetComponent<DashDeflect>();
+		
 
 		if(other&&other.doDeflect) {
 
@@ -90,6 +93,7 @@ public class DashActionHandler:ActionHandlerBase {
 			fly.ResetFlyTime();
 			canDash=true;
 			deflect--;
+			OnBounce(true);
 
 		} else {
 
@@ -104,6 +108,7 @@ public class DashActionHandler:ActionHandlerBase {
 				fly.PartialResetFlyTime();
 				timeDashed=dashTime*0.5f;
 				deflect--;
+				OnBounce(false);
 
 			}
 		}
@@ -123,4 +128,12 @@ public class DashActionHandler:ActionHandlerBase {
 	public void GainDash() {
 		canDash=true;
 	}
+
+	public int bounceToken { get; private set; }
+	public bool lastBounceMirror{ get; private set; }
+	void OnBounce(bool isMirror){
+		bounceToken=2;
+		lastBounceMirror=isMirror;
+	}
+
 }
