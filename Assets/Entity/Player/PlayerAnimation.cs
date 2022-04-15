@@ -12,6 +12,7 @@ public class PlayerAnimation:MonoBehaviour {
 	FlyActionHandler fly;
 	ObjectGroundedTester grounded;
 	SpriteRenderer spriteRenderer;
+	HorizontalMovementActionHandler move;
 
 	void Start() {
 		animator=GetComponent<Animator>();
@@ -20,6 +21,7 @@ public class PlayerAnimation:MonoBehaviour {
 		fly=GetComponent<FlyActionHandler>();
 		grounded=GetComponent<ObjectGroundedTester>();
 		spriteRenderer=GetComponent<SpriteRenderer>();
+		move=GetComponent<HorizontalMovementActionHandler>();
 	}
 
 	bool dashingPrevious;
@@ -27,7 +29,7 @@ public class PlayerAnimation:MonoBehaviour {
 
 	void Update() {
 		animator.speed=animationSpeed;
-		animator.SetFloat("SpeedX",rigidbody.velocity.x);
+		animator.SetFloat("SpeedX",move.relativeSpeed);
 		animator.SetFloat("SpeedY",rigidbody.velocity.y);
 
 		bool dashing = dash.dashing;

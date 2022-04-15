@@ -13,6 +13,8 @@ public class PlatformBreaker:MonoBehaviour {
 	public float breakProgression;
 	[SerializeField] AnimationCurve breakMagnitudeCurve;
 	[SerializeField] float baseBreakMagnitude = 0.1f;
+	[SerializeField] AudioClip soundBreaking;
+	[SerializeField] AudioClip soundBroke;
 
 	int layerNormal;
 
@@ -24,6 +26,7 @@ public class PlatformBreaker:MonoBehaviour {
 		if(spriteBroken==null) spriteBroken=spriteNormal;
 	}
 
+	bool breakingPrevious;
 	private void Update() {
 		UpdateVisual();
 		if(broken) {
@@ -38,6 +41,14 @@ public class PlatformBreaker:MonoBehaviour {
 			}
 
 		}
+
+		bool breaking = breakProgression>0;
+		if(broken) breaking=false;
+		if(breaking&&!breakingPrevious){
+			AudioManager.instance.PlayClip(soundBreaking,transform.position);
+		}
+		breakingPrevious=breaking;
+
 	}
 
 	void UpdateVisual() {
@@ -69,6 +80,7 @@ public class PlatformBreaker:MonoBehaviour {
 		collider.isTrigger=true;
 		spriteRenderer.sprite=spriteBroken;
 
+		AudioManager.instance.PlayClip(soundBroke,transform.position);
 	}
 
 }

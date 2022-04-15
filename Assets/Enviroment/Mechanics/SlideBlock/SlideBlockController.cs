@@ -9,6 +9,12 @@ public class SlideBlockController:MonoBehaviour {
 	[SerializeField] GameObject pointOn;
 	[SerializeField] float transistionTime;
 
+	[SerializeField] AudioClip sound;
+	AudioSource audioPlayer;
+	private void Start() {
+		audioPlayer=GetComponent<AudioSource>();
+	}
+
 	float time;
 	public Vector2 velocity { get; private set; }
 
@@ -32,6 +38,14 @@ public class SlideBlockController:MonoBehaviour {
 		transform.rotation=Quaternion.Lerp(pointOff.transform.rotation,pointOn.transform.rotation,t);
 
 		velocity=(transform.position-prvPosition)/Time.deltaTime;
+
+		if(time<=0||time>=transistionTime){
+			//Õ£÷π
+			audioPlayer.Stop();
+		}else{
+			//≤•∑≈…˘“Ù
+			if(!audioPlayer.isPlaying)audioPlayer.PlayOneShot(sound);
+		}
 
 	}
 
