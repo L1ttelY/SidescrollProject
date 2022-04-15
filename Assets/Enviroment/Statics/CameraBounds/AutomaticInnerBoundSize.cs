@@ -21,7 +21,11 @@ public class AutomaticInnerBoundSize : MonoBehaviour{
 		cameraSize.x=cameraSize.y*camera.aspect;
 		cameraSize*=2*cameraSizeCoefficiency;
 
-		bound.size=outerBound.size-cameraSize;
+		Vector2 size = outerBound.size-cameraSize;
+		if(size.x<=0.01f) size.x=0.01f;
+		if(size.y<=0.01f) size.y=0.01f;
+
+		bound.size=size;
 		transform.position=bound.transform.position;
 		bound.offset=outerBound.offset;
 	}
