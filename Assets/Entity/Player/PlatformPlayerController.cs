@@ -25,6 +25,8 @@ public class PlatformPlayerController:MonoBehaviour {
 
 	private void FixedUpdate() {
 
+		if(CGPlayer.isPlaying) return;
+
 		move.moveDirection=0;
 		if(Input.GetKey(KeyCode.A)) move.moveDirection--;
 		if(Input.GetKey(KeyCode.D)) move.moveDirection++;
