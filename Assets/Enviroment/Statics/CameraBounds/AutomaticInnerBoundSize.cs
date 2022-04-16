@@ -7,7 +7,6 @@ public class AutomaticInnerBoundSize : MonoBehaviour{
 	BoxCollider2D bound;
 	[SerializeField] BoxCollider2D outerBound;
 	new Camera camera;
-	[SerializeField] float cameraSizeCoefficiency=1;
 
 	private void Start() {
 		bound=GetComponent<BoxCollider2D>();
@@ -19,7 +18,7 @@ public class AutomaticInnerBoundSize : MonoBehaviour{
 		Vector2 cameraSize = Vector2.zero;
 		cameraSize.y=camera.orthographicSize;
 		cameraSize.x=cameraSize.y*camera.aspect;
-		cameraSize*=2*cameraSizeCoefficiency;
+		cameraSize*=2;
 
 		Vector2 size = outerBound.size-cameraSize;
 		if(size.x<=0.01f) size.x=0.01f;
